@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="css/style.css"> 
+	<script src="js/lib/jquery.js"></script>
+	<title>Your Test</title>
+</head>
+<body ng-app="App" ng-controller="tabsController">
+
+	<header>
+		<h1>
+			YOUR <span class="morning_style">TEST</span>
+		</h1>
+	</header>
+
+	<section class="container" ng-controller="linksController" >
+		<section class="animate" ng-include="currentTemplate.url"  ng-class="{'moveToLeft' : moveToLeft}"></section>
+	</section>
+	
+	<footer class="clear">
+		<section class="swipe">
+			<ul>
+				<li><span class="left" ng-click="selectPage(0)" ng-class="{'active': currentTemplate.id == 0}"></span></li>
+				<li><span class="left" ng-click="selectPage(1)" ng-class="{'active': currentTemplate.id == 1}"></span></li>
+			</ul>
+		</section>
+	</footer>
+<script src="js/lib/angular.js"></script>
+<script src="js/lib/angular-touch.js"></script>
+<script src="js/lib/angular-animate.js"></script>
+
+
+<script src="js/app.js"></script>
+<script src="js/tabsController.js"></script>
+<script src="js/linksService.js"></script>
+<script src="js/linksController.js"></script>
+
+
+
+<script type="text/ng-template" id="first.html">
+    <section class="step1" ng-swipe-left="selectPage(1)">
+	<section class="blocks left documents">
+		<section class="head">
+			<section class="title">Documents</section>
+		</section>
+		<section class="body">
+			<ul class="items">
+				<li class="item" ng-repeat="item in links|filter:{type:0}">
+					<label class="lab_check"><input type="checkbox" name="name" class="check" ng-model="item.added" ng-change="toggleLink(item)">
+						<span>
+							<section class="article">
+								<span class="name"> 
+									{{item.title}}
+								</span><br>
+								<span class="desc">
+									{{item.desc}}
+								</span>
+							</section>
+						</span>
+					</label>
+				</li>
+
+			</ul>
+		</section>
+		<section class="footer">
+
+			<a href="#" ng-if="(links|filter:{added:true,type:0}).length != (links|filter:{type:0}).length" class="button doc" ng-click="addAll(0)">ADD ALL</a>
+			<a href="#" ng-if="(links|filter:{added:true,type:0}).length == (links|filter:{type:0}).length" class="button doc" ng-click="removeAll(0)">REMOVE ALL</a>
+
+		</section>
+	</section>
+	<section class="blocks left links"  >
+		<section class="head">
+			<section class="title">Links</section>
+		</section>
+		<section class="body">
+			<ul class="items">
+				<li class="item" ng-repeat="item in links|filter:{type:1}">
+					<label class="lab_check"><input type="checkbox" name="name" class="check"
+					ng-model="item.added" ng-change="toggleLink(item)">
+						<span>
+							<section class="article">
+								<span class="name"> 
+									{{item.title}}
+								</span><br>
+								<span class="desc">
+									{{item.desc}}
+								</span>
+							</section>
+						</span>
+					</label>
+				</li>
+			</ul>
+		</section>
+		<section class="footer">
+
+			<a href="#" ng-if="(links|filter:{added:true,type:1}).length != (links|filter:{type:1}).length" class="button link" ng-click="addAll(1)">ADD ALL</a>
+			<a href="#" ng-if="(links|filter:{added:true,type:1}).length == (links|filter:{type:1}).length" class="button link" ng-click="removeAll(1)">REMOVE ALL</a>
+		</section>
+	</section>
+	<section class="blocks left science">
+		<section class="head">
+			<section class="title">Science Lab</section>
+		</section>
+		<section class="body">
+			<ul class="items">
+				<li class="item" ng-repeat="item in links|filter:{type:2}">
+					<label class="lab_check"><input type="checkbox" name="name" class="check"
+					ng-model="item.added" ng-change="toggleLink(item)">
+						<span>
+							<section class="article">
+								<span class="name"> 
+									{{item.title}}
+								</span><br>
+								<span class="desc">
+									{{item.desc}}	
+								</span>
+							</section>
+						</span>
+					</label>
+				</li>
+			</ul>
+		</section>
+		<section class="footer">
+			<a href="#" ng-if="(links|filter:{added:true,type:2}).length != (links|filter:{type:2}).length" class="button link" ng-click="addAll(2)">ADD ALL</a>
+			<a href="#" ng-if="(links|filter:{added:true,type:2}).length == (links|filter:{type:2}).length" class="button link" ng-click="removeAll(2)">REMOVE ALL</a>
+		</section>
+	</section>
+</section>
+</script>
+<script type="text/ng-template" id="second.html">
+	<section class="step2" ng-swipe-right="selectPage(0)">
+		<section class="send">
+			<section class="header">
+				
+			</section>
+			<section class="body">
+				<section class="userform">
+					<table>
+						<tr>
+							<td><h6>Name</h6><input type="text" placeholder="name" ng-model="user.name" /></td>
+							<td class="email"><h6>Email</h6><input type="text" name="email" placeholder="email" ng-model="user.email" /></td>
+						</tr>
+						<tr>
+							<td colspan="2">
+								<input type="text" name="moretext" placeholder="Message text..."
+								ng-model="user.text">
+							</td>
+						</tr>
+					</table>
+				</section>
+				<section class="attach">
+					<section class="count">{{addedLinks.length}} attached links</section>
+					<section class="links">
+						<ul>
+							<li  ng-class="{'ado':link.type==0,
+											'lin':link.type==1,
+											'sie':link.type==2,
+							}" ng-repeat="link in addedLinks track by $index">{{link.title}},{{link.desc}}
+							<a href class="delete" ng-click=removeFromMessage(link)></a>							
+						</ul>
+					</section>
+				</section>
+			</section>
+			<section class="footer">
+				<a href class="button" ng-click="sendForm()">SEND</a>
+			</section>
+		</section>
+	</section>
+	<script>
+	$('input[type="text"]').focus(function(){
+		$(this).prev().css('color','#00b9e5');
+	}).blur(function(){
+		$(this).prev().css('color','#d3d3d3');
+	})
+</script>
+</script>	
+</body>
+</html>
