@@ -1,0 +1,98 @@
+.canvas{
+	position: relative;
+	width: 1024px;
+	height: 768px;
+	margin: auto;
+	background: url(img/bg.png) no-repeat;
+	background-size: contain;
+}
+#title{
+	top:130px;
+	left: 74px;
+	color: #95ca00;
+	font-size: 30px;
+	position: absolute;
+}
+#title:hover{
+	cursor: pointer;
+}
+.element{
+	position: absolute;
+	left: 0;
+	right: 0;
+	bottom: 0;
+}
+.wave-1{
+	background: url(img/wave-1.png);
+	background-position: 1000px 0;
+	height: 521px;
+	animation: movewave 6s linear infinite;
+}
+.wave-2{
+	background: url(img/wave-2.png);
+	background-position: 0 0;
+	height: 768px;
+	animation: movewave 5s linear infinite reverse;
+}
+.sea{
+	display: flex;
+	height: 521px;
+}
+.boat{
+	display: flex;
+	margin: auto;
+	background: url(img/boat.png) no-repeat;
+	background-position: 176% 0;
+	width: 100%;
+	height: 282px;
+	
+}
+.bubbles{
+	margin: auto;
+	opacity: 0;
+	margin-top: 12%;
+	margin-right: 24%;
+	background: url(img/bubbles.png);
+	width: 65px;
+	height: 110px;
+	transition:  1s ease 5s;
+}
+.animate .bubbles{
+	opacity: 1;
+	margin-top: 10%;
+	margin-right: 22%;
+	animation: hidebubbles 5s ease-out forwards 6s;
+}
+.animate .boat{
+	animation: moveboat 5s ease-out forwards;
+}
+@keyframes movewave{
+	from { 
+		background-position: 1024px 0; 
+	}
+	to {
+		background-position: 0 0;
+	}
+}
+@keyframes moveboat{
+	from {
+		background-position: 176% 0;
+	}
+	to {
+		background-position: 50% 0;
+	}
+}
+@keyframes hidebubbles{
+	from{
+		opacity: 1;
+		margin-top: 10%;
+		margin-right: 22%;
+		transform: scale(1,1);
+	}
+	to{
+		opacity: 0;
+		margin-top: 0%;
+		margin-right: 20%;
+		transform: scale(.5,.5);
+	}
+}
