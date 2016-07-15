@@ -1,0 +1,128 @@
+body{
+    font-family: "Calibri";
+}
+
+.slider{
+    background: #faffff;
+    width: 960px;
+    margin: 0 auto;
+}
+.main{
+    height: 400px;
+    display: flex;
+}
+.main .item{
+    position: relative;
+}
+.animate{
+    animation: animateslider .3s;
+}
+.main .item .title-img{
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: url("../img/title-bg.png");
+    width: 283px;
+    height: 54px;
+}
+.main .item .title-img h2{
+    color: white;
+    line-height: 16px;
+    padding-left: 20px;
+}
+.main .item img{
+    width: 860px;
+    height: 400px;
+}
+.main .arrows{
+    width: 50px;
+}
+.main .arrow{
+    width: 18px;
+    height: 34px;
+    margin: 183px auto;
+    background: url("../img/arrow.png");
+
+}
+.main .arrows:hover{
+    cursor: pointer;
+    background-color: rgba(0,0,0,.1);
+}
+.main .arrow-left{
+    transform: rotate(180deg);
+}
+.slider .images{
+    display: flex;
+    justify-content: center;
+    width:860px;
+    margin: 20px auto;
+}
+
+.slider .images  img.border{
+    border: 2px solid blue;
+    opacity: 1;
+}
+.slider .images  img{
+    margin-right: 13px;
+    opacity: .8;
+    border: 1px solid gray;
+    width:80px;
+    height: 80px;
+}
+.slider .images img:hover{
+    cursor: pointer;
+}
+.form{
+    font-size: 24px;
+    margin-left: 50px;
+    width: 50%;
+}
+.form h2{
+
+    margin: 10px 0;
+}
+.form input[type="text"]{
+    font-size: 24px;
+    font-weight: lighter;
+    font-style: italic;
+    height: 36px;
+    margin-bottom: 20px;
+    padding-left: 20px;
+    width: 80%;
+}
+.form input[type="submit"]{
+    border-radius: 2px;
+    font-size: 24px;
+    height: 40px;
+}
+.form input[type="submit"]:hover{
+    cursor: pointer;
+}
+.form input[type="submit"].add{
+    width: 150px;
+    background: white;
+    border: 1px solid black;
+    margin-left: 258px;
+}
+.form input[type="submit"].remove{
+    width: 55%;
+    color: white;
+    border: none;
+    margin:30px 50px;
+    border-bottom: 2px solid #994811;
+    background: #d96f28;
+}
+.warn{
+    border-color: red;
+}
+@keyframes animateslider {
+    0%{
+        opacity: 1;
+    }
+    50%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
+    }
+}
